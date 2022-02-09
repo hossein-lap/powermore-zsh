@@ -1,5 +1,8 @@
 # powermore.zsh
-a fork of powerless ZSH plugin
+a fork of `powerless` ZSH plugin
+
+Simple and interactive zsh prompt for showing the git
+status of current directory
 
 **Screenshots:**
 
