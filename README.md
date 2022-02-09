@@ -6,3 +6,5 @@ a fork of powerless ZSH plugin
 ![dirty-and-staged](shots/diry-staged.png)
 
 ![dirty-and-staged](shots/diryStaged.png)
+
+![dirty-and-staged](shots/clean-new.png)
