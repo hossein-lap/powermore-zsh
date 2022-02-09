@@ -21,7 +21,7 @@ git_icon_dirty='Drt'
 git_icon_staged='Stg'
 git_icon_clean='Clr'
 git_icon_new='New'
-git_icon_stash='Ssh'
+git_icon_stash='St'
 
 ## Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
@@ -86,15 +86,13 @@ get-icon() {
 get-git-info() { 
   local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
  
-
   if [[ -n "$git_branch" ]]; then
-
         local git_stash_count="$(git stash list | grep ${git_branch} | wc -l)"
 
         if [[ "$git_stash_count" -gt "1" ]]; then
-          git_stash=" ${git_icon_stash}${git_stash_count} "
-        else 
-           git_stash=""
+          git_stash=" ${git_icon_stash}${git_stash_count}"
+        else
+          git_stash=""
         fi
     git_symbols="$vcs_info_msg_0_"
 
@@ -114,12 +112,12 @@ get-git-info() {
       back_color="1"
     fi
   
-    echo -n "%{%F{$color_git_fold}%K{$1}%} ${git_icon_fold} %{%F{$back_color}%K{$1}%} $git_branch $git_symbols$git_stash$rc"
+    echo -n "%{%F{$color_git_fold}%K{$1}%} ${git_icon_fold}%{%F{$back_color}%K{$1}%} $git_branch $git_symbols $git_stash$rc"
   fi
 }
 
 get-last-code() {
-  [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{$1}%K{$2}%} $last_code $rc" && prompt_char='﬋'
+  [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{$1}%K{$2}%} $last_code $rc" && prompt_char='×' # prompt_char='﬋'
 #  [[ (-n "$last_code") && ($last_code -ne 0) ]] && prompt_char='➥'
   
 }
