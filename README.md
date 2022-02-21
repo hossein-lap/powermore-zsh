@@ -4,6 +4,11 @@ a fork of `powerless` ZSH plugin
 Simple and interactive zsh prompt for showing the git
 status of current directory
 
+**Gif:**
+
+![powermore-gif](shots/powermore-zsh-show.gif)
+<!-- show screenshots -->
+<!--
 **Screenshots:**
 
 ![dirty-and-staged](shots/diry-staged.png)
@@ -11,3 +16,4 @@ status of current directory
 ![dirty-and-staged](shots/diryStaged.png)
 
 ![dirty-and-staged](shots/clean-new.png)
+-->
