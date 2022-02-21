@@ -1,13 +1,41 @@
-# powermore.zsh
+# powermore-zsh
 a fork of `powerless` ZSH plugin
 
 Simple and interactive zsh prompt for showing the git
 status of current directory
 
+**Get it:**
+
+```sh
+$ git clone https://github.com/primejade/powermore-zsh
+```
+
+```sh
+$ ./make.sh -h
+powermore-zsh plugin, a fork of powerless plugin.
+I just added some more git functionalities to it.
+for more details checkout the base project.
+Version 0.2
+
+Usage: [ ./make.sh ] or [ bash make.sh ]
+
+Arguments:
+	-h print this message
+	-v print version and exit
+	-r removes the backup files
+	   for having a cleaner home folder ;)
+
+Wanna fork it?
+		https://github.com/primejade/powermore-zsh
+
+The powerless project:
+		https://github.com/martinrotter/powerless
+```
+
 **Gif:**
 
 ![powermore-gif](shots/powermore-zsh-show.gif)
-<!-- show screenshots -->
+<!-- show screenshots [version 0.1] -->
 <!--
 **Screenshots:**
 
