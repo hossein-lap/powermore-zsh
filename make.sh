@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-ver_number="0.1"
+ver_number="0.2"
 
 function applyit () {
 # check any config file exists
@@ -59,7 +59,7 @@ Arguments:
 	-r removes the backup files
 	   for having a cleaner home folder ;)
 
-Wanna fonrk it?
+Wanna fork it?
 		https://github.com/primejade/powermore-zsh
 
 The powerless project:
