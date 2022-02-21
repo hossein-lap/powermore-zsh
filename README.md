@@ -7,7 +7,7 @@ status of current directory
 **Get it:**
 
 ```sh
-$ git clone https://github.com/primejade/powermore-zsh
+git clone https://github.com/primejade/powermore-zsh
 ```
 
 ```sh
