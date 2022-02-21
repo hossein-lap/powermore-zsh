@@ -53,6 +53,10 @@ Version ${ver_number}
 
 Usage: [ ./make.sh ] or [ bash make.sh ]
 
+Running this script without any arguments will backup
+the current ~/.zshrc and ~/.zsh.d (if there is any already)
+and copy the new config files into your \$HOME directory.
+
 Arguments:
 	-h print this message
 	-v print version and exit
