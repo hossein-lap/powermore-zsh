@@ -10,7 +10,9 @@ status of current directory
 git clone https://github.com/primejade/powermore-zsh
 ```
 
-```sh
+**See the help:**
+
+```
 $ ./make.sh -h
 powermore-zsh plugin, a fork of powerless plugin.
 I just added some more git functionalities to it.
