@@ -40,7 +40,7 @@ The powerless project:
 
 **Gif:**
 
-![powermore-gif](shots/powermore-zsh-show.gif)
+![powermore-gif](shots/powermore-zsh.mp4)
 
 <!-- show screenshots [version 0.1] -->
 <!--
