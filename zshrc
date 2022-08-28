@@ -4,12 +4,11 @@
 # |_||_|___|   P
 #              
 #
-# plugins {{{
-# syntax highlighting
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-# }}}
+# plugins
+source ~/.zsh.d/plugs/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh.d/plugs/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh.d/plugs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#
 # disable duplicated command in zsh_history {{{
 setopt histignorealldups
 # }}}

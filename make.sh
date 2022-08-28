@@ -36,7 +36,7 @@ echo "copy new config files.."
 cp -f zshrc $HOME/.zshrc
 # copy the new config file to home folder
 mkdir $HOME/.zsh.d
-cp -f zsh/* $HOME/.zsh.d/
+cp -rf zsh/* $HOME/.zsh.d/
 echo "config files added"
 # print exit status
 echo "[ Shell returned $? ]"
