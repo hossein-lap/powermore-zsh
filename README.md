@@ -52,3 +52,7 @@ The powerless project:
 
 ![dirty-and-staged](shots/clean-new.png)
 -->
+
+## TODO
+
+- [ ] Clean the scripts
