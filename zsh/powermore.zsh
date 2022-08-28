@@ -60,7 +60,7 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 #prompt_char='⇢'
 second_prompt_char=''
 first_prompt_char=''
-prompt_char='€'
+prompt_char=' €'
 rc='%{%f%k%}'
 
 get-user-host() {
@@ -131,7 +131,9 @@ get-venv-info() {
 }
 
 get-last-code() {
-  [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{1}%K{0}%} $last_code $rc" && prompt_char='¢' # prompt_char='﬋'
+  [[ (-n "$last_code") && ($last_code -ne 0) ]] \
+	  && echo -n "%{%F{1}%K{0}%} $last_code $rc" \
+	  && prompt_char=' ¢' # prompt_char='﬋'
 # [[ (-n "$last_code") && ($last_code -ne 0) ]] && prompt_char='➥'
 
 }
