@@ -63,3 +63,5 @@ date
 #fm6000 -n -r -c random
 #fm4000 -n -r -c white
 ## }}}
+#
+alias s='source ~/.zshrc'
