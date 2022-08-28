@@ -34,13 +34,13 @@ setopt prompt_subst
 add-zsh-hook precmd vcs_info
 ## add ${vcs_info_msg_0} to the prompt
 ## e.g. here we add the Git information in red
-##     ךּ            
-icon_fold=' '
+##     ךּ            
+icon_fold=' '
 git_icon_fold=' '
 git_icon_dirty=' '
 git_icon_staged=' '
-git_icon_clean=' '
-git_icon_new=' '
+git_icon_clean=' '
+git_icon_new=' '
 git_icon_stash=' '
 
 ## Enable checking for (un)staged changes, enabling use of %u and %c
@@ -54,7 +54,7 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 
 # }}}
 
-# Specify common variables.
+# Specify common variables. 
 #prompt_char='➡'
 #prompt_char='►'
 #prompt_char='⇢'
