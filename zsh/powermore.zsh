@@ -34,14 +34,14 @@ setopt prompt_subst
 add-zsh-hook precmd vcs_info
 ## add ${vcs_info_msg_0} to the prompt
 ## e.g. here we add the Git information in red
-
-icon_fold=' '
-git_icon_fold='git'
-git_icon_dirty='dirty '
-git_icon_staged='staged '
-git_icon_clean='clean '
-git_icon_new='new '
-git_icon_stash='stash '
+##     ךּ           
+icon_fold=' '
+git_icon_fold=' '
+git_icon_dirty=' '
+git_icon_staged=' '
+git_icon_clean=' '
+git_icon_new=' '
+git_icon_stash=' '
 
 ## Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
@@ -60,7 +60,7 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 #prompt_char='⇢'
 second_prompt_char=''
 first_prompt_char=''
-prompt_char='$'
+prompt_char='€'
 rc='%{%f%k%}'
 
 get-user-host() {
@@ -83,10 +83,10 @@ get-icon() {
 
 get-git-info() {
   local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
-      first_prompt_char=' '
+      first_prompt_char=''
 
   if [[ -n "$git_branch" ]]; then
-        local git_stash_count="$(git stash list | grep ${git_branch} | wc -l)"
+        local git_stash_count="$(git stash list | grep -c ${git_branch} )"
 
         if [[ "$git_stash_count" -gt "0" ]]; then
           git_stash="${git_icon_stash}${git_stash_count} "
@@ -101,7 +101,7 @@ get-git-info() {
       back_color=$3
     elif [[ "$(echo -n $vcs_info_msg_0_)" == "${git_icon_dirty}${git_icon_staged}" ]] ; then
       back_color=$4
-    elif [[ "$(git status -s | awk '{print $1}' | grep \? | uniq)" == "??" ]]; then
+    elif [[ "$(git status -s | grep -c '^?')" -gt 0 ]]; then
       git_symbols="${git_icon_new}"
       back_color=$6
     elif [[ "$(git status -s | wc -l)" == "0" ]]; then
@@ -131,17 +131,18 @@ get-venv-info() {
 }
 
 get-last-code() {
-  [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{$1}%k%} $last_code$rc" && prompt_char='%%' # prompt_char='﬋'
+  [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{1}%K{0}%} $last_code $rc" && prompt_char='¢' # prompt_char='﬋'
 # [[ (-n "$last_code") && ($last_code -ne 0) ]] && prompt_char='➥'
 
 }
 
 get-prompt() {
-# echo -n && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$color_code_wrong}%} $prompt_char$rc%{\e[0m%} " || echo -n "$prompt_char%{\e[0m%} " )
-echo -n && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$color_code_wrong}%k%} $prompt_char$rc%{\e[0m%} " || echo -n " $prompt_char%{\e[0m%} " )
+echo -n && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$color_code_wrong}%} $prompt_char$rc%{\e[0m%} " || echo -n "$prompt_char%{\e[0m%} " )
+#echo -n && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$color_code_wrong}%k%} $prompt_char$rc%{\e[0m%} " || echo -n " $prompt_char%{\e[0m%} " )
 }
 
-powerless-prompt() {
+powermore-prompt() {
+  get-last-code $color_code_wrong $color_text
   get-user-host $color_text $color_user_host
   get-icon $color_fold_icon $color_pwd
   get-pwd $color_text_pwd $color_pwd
@@ -149,14 +150,13 @@ powerless-prompt() {
   get-git-info $color_git_pwd $color_git_ok $color_git_unstaged $color_git_adddirty $color_git_dirty $color_git_notok $color_git_last
   get-venv-info $color_text $color_venv
   echo ''
-  get-last-code $color_code_wrong $color_text
   get-prompt
 }
 
-powerless-right-prompt() {
+powermore-right-prompt() {
 }
 
-precmd-powerless() {
+precmd-powermore() {
   last_code=$?
 
   if [[ $is_first_prompt -eq 999 ]]; then
@@ -167,8 +167,8 @@ precmd-powerless() {
 }
 
 # Attach the hook functions.
-[[ ${precmd_functions[(r)precmd-powerless]} != "precmd-powerless" ]] && precmd_functions+=(precmd-powerless)
+[[ ${precmd_functions[(r)precmd-powermore]} != "precmd-powermore" ]] && precmd_functions+=(precmd-powermore)
 
 # Set the prompts.
-PROMPT='$(powerless-prompt)'
-RPROMPT='$(powerless-right-prompt)'
+PROMPT='$(powermore-prompt)'
+RPROMPT='$(powermore-right-prompt)'
