@@ -57,7 +57,7 @@ autoload -Uz compinit && compinit
 # }}}
 
 # autostart commands {{{
-date
+#date
 #[ $[ $RANDOM % 4 ] == 0 ] && neofetch || pfetch
 #fm6000 -n -r -c random
 #fm4000 -n -r -c white

@@ -1,5 +1,7 @@
 # powermore-zsh
-a fork of `powerless` ZSH plugin
+a fork of
+[powerless](https://github.com/martinrotter/powerless)
+ZSH plugin
 
 Simple and interactive zsh prompt for showing the git
 status of current directory
@@ -7,7 +9,7 @@ status of current directory
 **Get it:**
 
 ```sh
-git clone https://github.com/primejade/powermore-zsh
+git clone https://github.com/hossein-lap/powermore-zsh
 ```
 
 **See the help:**
@@ -32,7 +34,7 @@ Arguments:
 	   for having a cleaner home folder ;)
 
 Wanna fork it?
-		https://github.com/primejade/powermore-zsh
+		https://github.com/hossein-lap/powermore-zsh
 
 The powerless project:
 		https://github.com/martinrotter/powerless
