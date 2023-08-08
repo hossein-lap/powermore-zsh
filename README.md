@@ -40,9 +40,18 @@ The powerless project:
 		https://github.com/martinrotter/powerless
 ```
 
+**Screenshots:**
+
+![git-commands](shots/powermore-zsh-01.png)
+
+![home-directory](shots/powermore-zsh-02.png)
+
+<!-- show gif [version 0.1] -->
+<!--
 **Gif:**
 
 ![powermore-gif](shots/powermore-zsh.gif)
+-->
 
 <!-- show screenshots [version 0.1] -->
 <!--
