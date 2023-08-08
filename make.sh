@@ -20,20 +20,20 @@ function applyit () {
 		fi
 	fi
 
-	# check any zsh.d directory exists
-	if [[ -d "${HOME}/.zsh.d" ]]; then
-		# check any backup zsh.d directory exists
-		if [[ -d "${HOME}/.zsh.d.bak" ]]; then
+	# check any zshrc.d directory exists
+	if [[ -d "${HOME}/.zshrc.d" ]]; then
+		# check any backup zshrc.d directory exists
+		if [[ -d "${HOME}/.zshrc.d.bak" ]]; then
 			install_rc_dir=1
 			echo "${func_name} .zshrc.d backup exists"
 		else
 			install_rc_dir=0
-			echo "backup ${HOME}/zsh.d directory.."
-			cp -rf ${HOME}/.zsh.d ${HOME}/.zsh.d.bak
-			rm -rf ${HOME}/.zsh.d
+			echo "backup ${HOME}/zshrc.d directory.."
+			cp -rf ${HOME}/.zshrc.d ${HOME}/.zshrc.d.bak
+			rm -rf ${HOME}/.zshrc.d
 			echo ""
 		fi
-	# backup the current .zsh.d directory if exists
+	# backup the current .zshrc.d directory if exists
 	fi
 
 	# backup the current .zshrc file if exists
@@ -48,8 +48,8 @@ function applyit () {
 	# backup the current .zshrc file if exists
 	if [ "${install_rc_dir}" -eq 0 ]; then
 		# copy the new config file to home folder
-		mkdir ${HOME}/.zsh.d
-		cp -rf zsh/* ${HOME}/.zsh.d/
+		mkdir ${HOME}/.zshrc.d
+		cp -rf zsh/* ${HOME}/.zshrc.d/
 		echo "zshrc.d: [done]"
 	else
 		echo 'zshrc.d: there is nothing to do'
@@ -83,7 +83,7 @@ Version ${ver_number}
 Usage: [ ./make.sh ] or [ bash make.sh ]
 
 Running this script without any arguments will backup
-the current ~/.zshrc and ~/.zsh.d (if there is any already)
+the current ~/.zshrc and ~/.zshrc.d (if there is any already)
 and copy the new config files into your \${HOME} directory.
 
 Arguments:
@@ -105,9 +105,9 @@ exit 0
 
 # rm backup {{{
 function backup_remove () {
-  if [[ -d "${HOME}/.zsh.d.bak" ]]; then
+  if [[ -d "${HOME}/.zshrc.d.bak" ]]; then
     echo "remove backups.."
-    rm -rf ${HOME}/.zsh.d.bak
+    rm -rf ${HOME}/.zshrc.d.bak
     rm -rf ${HOME}/.zshrc.bak
   else
     echo "You are clean, no backup file exists :)"
