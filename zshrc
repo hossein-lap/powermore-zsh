@@ -15,9 +15,9 @@ sourceit "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting
 sourceit "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 sourceit "/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
-#sourceit "${HOME}/.zsh.d/plugs/zsh-history-substring-search/zsh-history-substring-search.zsh"
-#sourceit "${HOME}/.zsh.d/plugs/zsh-autosuggestions/zsh-autosuggestions.zsh"
-#sourceit "${HOME}/.zsh.d/plugs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+#sourceit "${HOME}/.zshrc.d/plugs/zsh-history-substring-search/zsh-history-substring-search.zsh"
+#sourceit "${HOME}/.zshrc.d/plugs/zsh-autosuggestions/zsh-autosuggestions.zsh"
+#sourceit "${HOME}/.zshrc.d/plugs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 #
 # disable duplicated command in zsh_history {{{
 setopt histignorealldups
@@ -25,7 +25,7 @@ setopt histignorealldups
 #source /usr/share/powerline/bindings/zsh/powerline.zsh
 
 # history file {{{
-export HISTFILE=~/.zsh.d/histfile
+export HISTFILE=~/.zshrc.d/histfile
 export HISTSIZE=4096   # the number of items for the internal history list
 export SAVEHIST=1000000   # maximum number of items for the history file
 
@@ -38,11 +38,11 @@ setopt EXTENDED_HISTORY  # record command start time
 # }}}
 
 # NOTE THAT these two scripts must be called with parameters.
-sourceit "${HOME}/.zsh.d/powermore.zsh" # Script with prompt, disable hardcoded colors.
-sourceit "${HOME}/.zsh.d/utilities.zsh" false  # Optional scripts (see above), enable dirstack tweaks.
+sourceit "${HOME}/.zshrc.d/powermore.zsh" # Script with prompt, disable hardcoded colors.
+sourceit "${HOME}/.zshrc.d/utilities.zsh" false  # Optional scripts (see above), enable dirstack tweaks.
 
 # source aliases file {{{
-sourceit "${HOME}/.zsh.d/aliases.zsh"
+sourceit "${HOME}/.zshrc.d/aliases.zsh"
 # }}}
 
 ## zsh prompt {{{

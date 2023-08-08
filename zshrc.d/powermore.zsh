@@ -40,6 +40,7 @@ add-zsh-hook precmd vcs_info
 ## e.g. here we add the Git information in red
 ##     ךּ                   
 icon_fold='󰉋 '
+icon_fold_git=' '
 icon_fold_home='󱂵 '
 git_icon_fold='󰊢 '
 git_icon_dirty=' '
@@ -63,22 +64,22 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 # ➡ ► ► € ⇢ 
 first_prompt_char=''
 prompt_char=''
-rc='%{%f%k%}'
+rst='%{%f%k%}'
 
 get-user-host() {
-	[[ -n "$SSH_CLIENT" ]] && echo -n "%{%F{$1}%K{$2}%} %n@%M ${rc}"
+	[[ -n "${SSH_CLIENT}" ]] && echo -n "%{%F{$1}%K{$2}%} %n@%M ${rst}"
 }
 
 #get-icon() {
 #}
 
 get-git-info() {
-	local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
+	local git_branch="$(git symbolic-ref --short HEAD 2> /dev/null)"
 
 	if [[ -n "$git_branch" ]]; then
 		local git_stash_count="$(git stash list | grep -c ${git_branch} )"
 
-		if [[ "$git_stash_count" -gt "0" ]]; then
+		if [[ "${git_stash_count}" -gt "0" ]]; then
 			git_stash="${git_icon_stash}${git_stash_count} "
 		else
 			git_stash=""
@@ -86,7 +87,7 @@ get-git-info() {
 
 		git_symbols="$vcs_info_msg_0_"
 
-		if [[ "$(echo -n $vcs_info_msg_0_)" == "${git_icon_dirty}" ]]; then
+		if [[ "${vcs_info_msg_0_}" == "${git_icon_dirty}" ]]; then
 			back_color=$5
 		elif [[ "$(echo -n $vcs_info_msg_0_)" == "${git_icon_staged}" ]]; then
 			back_color=$3
@@ -97,15 +98,15 @@ get-git-info() {
 			back_color=$6
 		elif [[ "$(git status -s | wc -l)" == "0" ]]; then
 			git_symbols="${git_icon_clean}"
-			back_color=$2
+			back_color=${2}
 		else
 			back_color="1"
 		fi
 
-		echo -n "%{%F{$color_git_fold}%K{$1}%} ${git_icon_fold}"
-		echo -n "%{%F{$color_git_branch}%K{$1}%} $git_branch"
-		echo -n "%{%F{$back_color}%K{$1}%}"
-		echo -n " $git_symbols$git_stash%{%F{$1}%k"${first_prompt_char}"%}${rc}"
+		echo -n "%{%F{${color_git_fold}}%K{${1}}%} ${git_icon_fold}"
+		echo -n "%{%F{${color_git_branch}}%K{${1}}%} ${git_branch}"
+		echo -n "%{%F{${back_color}}%K{${1}}%}"
+		echo -n " ${git_symbols}${git_stash}%{%F{${1}}%k"${first_prompt_char}"%}${rst}"
 	fi
 }
 
@@ -115,29 +116,37 @@ get-pwd() {
 
 	fg=${1}
 	bg=${2}
-	if [ "${PWD}" = "${HOME}" ]; then
-	    echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold_home}${rc}"
-	else
-	    echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold}${rc}"
-	fi
 
 	local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
-	if [[ -n "$git_branch" ]]; then
+	if [[ -n "${git_branch}" ]]; then
 		local fst_prompt_colr="%{%K{$2}%}"
 		local first_prompt_char=''
 	fi
-	echo -n "%{%F{$1}%K{$2}%} %. %{%F{$2}%k%}${first_prompt_char}${rc}"
+
+	if [[ "${PWD}" == "${HOME}" ]]; then
+	    echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold_home}${rst}"
+	else
+#	    if [[ -n "${git_branch}" ]]; then
+#		echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold_git}${rst}"
+#	    else
+		echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold}${rst}"
+#	    fi
+	fi
+
+#	echo -n "%{%F{${fg}}%K{${bg}}%} ${prename_icon}${rst}"
+
+	echo -n "%{%F{${1}}%K{${2}}%} %. %{%F{${2}}%k%}${first_prompt_char}${rst}"
 }
 
 get-venv-info() {
 	if [ -n "$VIRTUAL_ENV" ]; then
-		echo -n "%{%F{$1}%K{$2}%} $(basename $VIRTUAL_ENV) ${rc}"
+		echo -n "%{%F{$1}%K{$2}%} $(basename $VIRTUAL_ENV) ${rst}"
 	fi
 }
 
 get-last-code() {
 	[[ (-n "$last_code") && ($last_code -ne 0) ]] \
-		&& echo -n "%{%F{${1}}%K{${2}}%} $last_code ${rc}"
+		&& echo -n "%{%F{${1}}%K{${2}}%} $last_code ${rst}"
 		#&& local first_prompt_char='' \
 }
 
@@ -155,9 +164,9 @@ powermore-prompt() {
 	get-prompt
 }
 
-powermore-right-prompt() {
-	#get-right-prompt
-}
+#powermore-right-prompt() {
+#	#get-right-prompt
+#}
 
 precmd-powermore() {
 	last_code=$?
@@ -175,4 +184,4 @@ precmd-powermore() {
 
 # Set the prompts.
 PROMPT='$(powermore-prompt)'
-RPROMPT='$(powermore-right-prompt)'
+#RPROMPT='$(powermore-right-prompt)'
