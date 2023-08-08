@@ -5,9 +5,19 @@
 #              
 #
 # plugins
-source ~/.zsh.d/plugs/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.zsh.d/plugs/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh.d/plugs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+sourceit() {
+    if [ -r "${1}" ]; then
+	source "${1}"
+    fi
+}
+
+sourceit "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+sourceit "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+sourceit "/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
+#sourceit "${HOME}/.zsh.d/plugs/zsh-history-substring-search/zsh-history-substring-search.zsh"
+#sourceit "${HOME}/.zsh.d/plugs/zsh-autosuggestions/zsh-autosuggestions.zsh"
+#sourceit "${HOME}/.zsh.d/plugs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 #
 # disable duplicated command in zsh_history {{{
 setopt histignorealldups
@@ -28,10 +38,11 @@ setopt EXTENDED_HISTORY  # record command start time
 # }}}
 
 # NOTE THAT these two scripts must be called with parameters.
-source ~/.zsh.d/powermore.zsh # Script with prompt, disable hardcoded colors.
-source ~/.zsh.d/utilities.zsh false  # Optional scripts (see above), enable dirstack tweaks.
+sourceit "${HOME}/.zsh.d/powermore.zsh" # Script with prompt, disable hardcoded colors.
+sourceit "${HOME}/.zsh.d/utilities.zsh" false  # Optional scripts (see above), enable dirstack tweaks.
+
 # source aliases file {{{
-source ~/.zsh.d/aliases.zsh
+sourceit "${HOME}/.zsh.d/aliases.zsh"
 # }}}
 
 ## zsh prompt {{{
@@ -64,3 +75,9 @@ autoload -Uz compinit && compinit
 ## }}}
 #
 alias s='source ~/.zshrc'
+
+# keybinds {{{
+# normal HOME and END behavior
+bindkey "\033[1~" beginning-of-line
+bindkey "\033[4~" end-of-line
+# }}}

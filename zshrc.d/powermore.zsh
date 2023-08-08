@@ -38,14 +38,15 @@ add-zsh-hook precmd vcs_info
 
 ## add ${vcs_info_msg_0} to the prompt
 ## e.g. here we add the Git information in red
-##     ךּ              
-icon_fold=' '
-git_icon_fold=' '
+##     ךּ                   
+icon_fold='󰉋 '
+icon_fold_home='󱂵 '
+git_icon_fold='󰊢 '
 git_icon_dirty=' '
 git_icon_staged=' '
 git_icon_clean=' '
 git_icon_new=' '
-git_icon_stash=' '
+git_icon_stash=' '
 
 ## Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
@@ -65,12 +66,11 @@ prompt_char=''
 rc='%{%f%k%}'
 
 get-user-host() {
-	[[ -n "$SSH_CLIENT" ]] && echo -n "%{%F{$1}%K{$2}%} %n@%M $rc"
+	[[ -n "$SSH_CLIENT" ]] && echo -n "%{%F{$1}%K{$2}%} %n@%M ${rc}"
 }
 
-get-icon() {
-			echo -n "%{%F{$1}%K{$2}%} ${icon_fold}$rc"
-}
+#get-icon() {
+#}
 
 get-git-info() {
 	local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
@@ -105,28 +105,39 @@ get-git-info() {
 		echo -n "%{%F{$color_git_fold}%K{$1}%} ${git_icon_fold}"
 		echo -n "%{%F{$color_git_branch}%K{$1}%} $git_branch"
 		echo -n "%{%F{$back_color}%K{$1}%}"
-		echo -n " $git_symbols$git_stash%{%F{$1}%k"${first_prompt_char}"%}$rc"
+		echo -n " $git_symbols$git_stash%{%F{$1}%k"${first_prompt_char}"%}${rc}"
 	fi
 }
 
 get-pwd() {
+#	fg=${color_fold_icon}
+#	bg=${color_pwd}
+
+	fg=${1}
+	bg=${2}
+	if [ "${PWD}" = "${HOME}" ]; then
+	    echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold_home}${rc}"
+	else
+	    echo -n "%{%F{${fg}}%K{${bg}}%} ${icon_fold}${rc}"
+	fi
+
 	local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
 	if [[ -n "$git_branch" ]]; then
 		local fst_prompt_colr="%{%K{$2}%}"
 		local first_prompt_char=''
 	fi
-	echo -n "%{%F{$1}%K{$2}%} %. %{%F{$2}%k%}${first_prompt_char}$rc"
+	echo -n "%{%F{$1}%K{$2}%} %. %{%F{$2}%k%}${first_prompt_char}${rc}"
 }
 
 get-venv-info() {
 	if [ -n "$VIRTUAL_ENV" ]; then
-		echo -n "%{%F{$1}%K{$2}%} $(basename $VIRTUAL_ENV) $rc"
+		echo -n "%{%F{$1}%K{$2}%} $(basename $VIRTUAL_ENV) ${rc}"
 	fi
 }
 
 get-last-code() {
 	[[ (-n "$last_code") && ($last_code -ne 0) ]] \
-		&& echo -n "%{%F{0}%K{1}%} $last_code $rc"
+		&& echo -n "%{%F{${1}}%K{${2}}%} $last_code ${rc}"
 		#&& local first_prompt_char='' \
 }
 
@@ -137,7 +148,6 @@ get-prompt() {
 powermore-prompt() {
 	get-last-code $color_code_wrong $color_text
 	get-user-host $color_text $color_user_host
-	get-icon $color_fold_icon $color_pwd
 	get-pwd $color_text_pwd $color_pwd $color_git_pwd
 	get-git-info $color_git_pwd $color_git_ok $color_git_unstaged \
 		$color_git_adddirty $color_git_dirty $color_git_notok $color_git_last
