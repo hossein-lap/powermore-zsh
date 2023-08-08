@@ -19,25 +19,25 @@ $ ./make.sh -h
 powermore-zsh plugin, a fork of powerless plugin.
 I just added some more git functionalities to it.
 for more details checkout the base project.
-Version 0.2
+Version 0.8
 
 Usage: [ ./make.sh ] or [ bash make.sh ]
 
 Running this script without any arguments will backup
-the current ~/.zshrc and ~/.zsh.d (if there is any already)
-and copy the new config files into your $HOME directory.
+the current ~/.zshrc and ~/.zshrc.d (if there is any already)
+and copy the new config files into your ${HOME} directory.
 
 Arguments:
-	-h print this message
-	-v print version and exit
-	-r removes the backup files
-	   for having a cleaner home folder ;)
+    -h print this message
+    -v print version and exit
+    -r removes the backup files
+    -f removes the backup files and installes the scripts
 
 Wanna fork it?
-		https://github.com/hossein-lap/powermore-zsh
+        https://github.com/hossein-lap/powermore-zsh
 
 The powerless project:
-		https://github.com/martinrotter/powerless
+        https://github.com/martinrotter/powerless
 ```
 
 **Screenshots:**
